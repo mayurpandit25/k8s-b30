@@ -16,7 +16,7 @@ spec:
         app: myapp
         env: devops
     spec: 
-    - containers: 
+      containers: 
       - name: nginx-container
         image: nginx:latest 
         ports: 
