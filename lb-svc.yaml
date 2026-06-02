@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service 
+metadata: 
+  name: lb-svc 
+  labels: 
+    app: myapp 
+    env: devops
+spec: 
+  type: LoadBalancer
+  selector: 
+    app: myapp 
+  ports: 
+  - name: lb-svc-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
