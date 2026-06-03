@@ -7,7 +7,8 @@ metadata:
     env: devops 
 spec: 
   selector: 
-    app: myapp 
+    matchLabels: 
+      app: myapp 
   template: 
     metadata: 
       name: daemonset-template 
