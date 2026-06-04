@@ -1,0 +1,34 @@
+apiVersion: apps/v1 
+kind: StatefulSet 
+metadata: 
+  name: ss-mysql 
+  labels: 
+    app: mysql 
+    env: devops 
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: mysql 
+  template: 
+    metadata: 
+      name: mysql-template 
+      labels: 
+        app: mysql 
+        env: devops 
+    spec: 
+      containers: 
+      - name: mysql-container 
+        image: mysql:latest 
+        ports: 
+        - name: mysql-port 
+          containerPort: 3306
+        env: 
+        - name: MYSQL_ROOT_PASSWORD 
+          value: root123 
+        - name: MYSQL_USER
+          value: admin 
+        - name: MYSQL_PASSWORD 
+          value: admin123 
+        - name: MYSQL_DATABASE
+          value: studentapp  
