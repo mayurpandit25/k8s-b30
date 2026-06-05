@@ -1,0 +1,49 @@
+apiVersion: apps/v1 
+kind: StatefulSet 
+metadata: 
+  name: ss-mysql 
+  labels: 
+    app: mysql 
+    env: devops 
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: mysql 
+  template: 
+    metadata: 
+      name: mysql-template 
+      labels: 
+        app: mysql 
+        env: devops 
+    spec: 
+      containers: 
+      - name: mysql-container 
+        image: mysql:latest 
+        ports: 
+        - name: mysql-port 
+          containerPort: 3306
+        env: 
+        - name: MYSQL_ROOT_PASSWORD 
+          valueFrom: 
+            configMapKeyRef: 
+              name: my-config 
+              key: MYSQL_ROOT_PASSWORD
+
+        - name: MYSQL_USER
+          valueFrom: 
+            configMapKeyRef:
+              name: my-config 
+              key: MYSQL_USER
+
+        - name: MYSQL_PASSWORD 
+          valueFrom: 
+            configMapKeyRef:
+              name: my-config 
+              key: MYSQL_PASSWORD
+
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: my-config 
+              key: MYSQL_DATABASE 
