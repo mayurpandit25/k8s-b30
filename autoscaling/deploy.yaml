@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: my-deployment 
+  labels: 
+    app: myapp 
+    env: devops 
+  namespace: autoscaling
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: myapp 
+  template: 
+    metadata: 
+      name: deployment-template 
+      labels: 
+        app: myapp 
+    spec: 
+      containers: 
+      - name: nginx-container 
+        image: nginx:latest 
+        ports: 
+        - name: nginx-port 
+          containerPort: 80
+          
