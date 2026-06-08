@@ -23,10 +23,10 @@ spec:
         ports: 
         - name: nginx-port 
           containerPort: 80
-        resource:
+        resources:
           requests: 
-            cpu: "100m"
-            memory: "128Mi"
+            cpu: 100m
+            memory: 128Mi
           limits:
-            cpu: "200m"
-            memory: "256Mi"
+            cpu: 200m
+            memory: 256Mi
