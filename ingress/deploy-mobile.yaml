@@ -1,0 +1,38 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: httpd-mobile
+  labels: 
+    app: httpd-mobile
+spec: 
+  replicas: 1 
+  selector: 
+    matchLabels: 
+      app: httpd-mobile
+  template: 
+    metadata: 
+      name: httpd-mobile
+      labels: 
+        app: httpd-mobile
+    spec: 
+      containers: 
+      - name: httpd-container 
+        image: httpd:latest 
+        ports: 
+        - name: httpd-port 
+          containerPort: 80
+...
+---
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: my-svc-mobile
+spec: 
+  type: ClusterIP
+  selector: 
+    app: httpd-mobile 
+  ports: 
+  - name: my-svc-port 
+    protocol: TCP 
+    port: 80
+    targetPort: 80
